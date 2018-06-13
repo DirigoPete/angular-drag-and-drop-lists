@@ -333,6 +333,15 @@
             var rect = listItemNode.getBoundingClientRect();
             if (listSettings.horizontal) {
               var isFirstHalf = event.clientX < rect.left + rect.width / 2;
+              // If the parent node has a calculated direction of "rtl" (from an HTML "dir" attribute or a "direction" CSS property), 
+              // we need to then insert the new node before instead of after, or vice versa.
+              if (computedStyles.getPropertyValue('direction') === 'rtl') {
+                isFirstHalf = !isFirstHalf;
+              }
+              // ...and do the same with the display:flex and flex-direction:row-reverse CSS styles. If the element is both "rtl" and "row-reverse", the two settings cancel each other out.
+              if (computedStyles.getPropertyValue('display') === 'flex' && computedStyles.getPropertyValue('flex-direction') === 'row-reverse') {
+                isFirstHalf = !isFirstHalf;
+              }
             } else {
               var isFirstHalf = event.clientY < rect.top + rect.height / 2;
             }
