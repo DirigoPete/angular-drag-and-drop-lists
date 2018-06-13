@@ -333,6 +333,7 @@
             var rect = listItemNode.getBoundingClientRect();
             if (listSettings.horizontal) {
               var isFirstHalf = event.clientX < rect.left + rect.width / 2;
+              var computedStyles = $window.getComputedStyle(listItemNode.parentNode);
               // If the parent node has a calculated direction of "rtl" (from an HTML "dir" attribute or a "direction" CSS property), 
               // we need to then insert the new node before instead of after, or vice versa.
               if (computedStyles.getPropertyValue('direction') === 'rtl') {
