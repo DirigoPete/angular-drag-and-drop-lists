@@ -269,7 +269,7 @@
    *                        by creating a child element with dndPlaceholder class.
    * - dndDragover          Will be added to the list while an element is dragged over the list.
    */
-  dndLists.directive('dndList', ['$parse', function($parse, $window) {
+  dndLists.directive('dndList', ['$parse', '$window', function($parse, $window) {
     return function(scope, element, attr) {
       // While an element is dragged over the list, this placeholder element is inserted
       // at the location where the element would be inserted after dropping.
